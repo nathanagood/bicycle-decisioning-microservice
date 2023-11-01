@@ -1,4 +1,4 @@
-# Example OpenLiberty Microservice for Calling ADS Rules
+# Example Open Liberty Microservice for Calling ADS Rules
 
 This is an example Java project, deployed as a [microservice](https://en.wikipedia.org/wiki/Microservices)
 using [OpenLiberty.io](https://openliberty.io/) that can be packaged and deployed
@@ -55,10 +55,10 @@ Remember, you will need to have the repository that has the IBM ADS artifacts
 in it configured in Maven. One of the easiest ways to do that is the `settings.xml`
 file, which is documented in greater detail [here](https://maven.apache.org/settings.html).
 
-## Running in OpenLiberty
+## Running in Open Liberty
 
-To run this project in OpenLiberty locally, use the commands `./mvnw liberty:dev`
-to start OpenLiberty in dev mode or use `./mvnw liberty:start` to start it in
+To run this project in Open Liberty locally, use the commands `./mvnw liberty:dev`
+to start Open Liberty in dev mode or use `./mvnw liberty:start` to start it in
 the background. See "[Starting and stopping Open Liberty in the background](https://openliberty.io/guides/getting-started.html#starting-and-stopping-open-liberty-in-the-background)" for more details.
 
 ## Running in a container
