@@ -1,6 +1,7 @@
 package com.ibm.nathangood.rest;
 
 import java.util.UUID;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.ibm.decision.run.DecisionRunner;
@@ -41,8 +42,8 @@ public class BicycleResource {
         LOG.info("Evalutating rules now...");
 
         // Here, we load the rules using the decision service and submit the
-        // input as the JSON document. Here, the model expected by the rules
-        // and the model expected by the web service are the same, but they
+        // input as an object of type Input. The model expected by the rules
+        // and the model expected by the web service are mostly the same, but they
         // don't necessarily have to be. Using more of a MVVM approach here, where
         // the model expected and returned by the services can be thought of as
         // the "View Model", then there is a level of abstraction between the two.
@@ -50,7 +51,7 @@ public class BicycleResource {
         // This code borrowed heavily from the sample here:
         // https://github.com/icp4a/automation-decision-services-samples/blob/master/samples/ExecutionApiSample/src/main/java/com/ibm/ads/samples/LoanApproval.java
 
-        // Here, instead of loading the file from the file system, we will use
+        // Instead of loading the file from the file system, we will use
         // the class loader because the JAR was added to the classpath by Maven
         DecisionRunnerProvider provider = new ClassLoaderDecisionRunnerProvider.Builder()
                 .build();
@@ -58,11 +59,9 @@ public class BicycleResource {
 
         // If you're looking at code, get this from the <name> element in the
         // model's `operation.dop` file.
-        //
         DecisionRunner runner = provider.getDecisionRunner("Bicycle-Model");
 
         // Set up tracing so we can log this out...
-        // trace config
         TraceConfiguration trace = new TraceConfiguration() {
             {
                 printedMessages = true;
@@ -83,6 +82,8 @@ public class BicycleResource {
         in.tireSize = (long)input.getTireSize();
 
         Object out = runner.execute(in, context);
+        LOG.log(Level.INFO, "Got result: {0}", out);
+
         Trace t = context.getTrace();
         if (t != null) {
             t.printedMessages.forEach(m -> LOG.info(m.toString()));

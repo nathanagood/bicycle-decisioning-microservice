@@ -18,13 +18,23 @@
     </properties>
 
     <dependencies>
-        <!-- This is the ADS project output. -->
+        <!-- 
+          This is the ADS project output. Find the source for this JAR file here
+          in the https://github.com/nathanagood/bicycle-decisioning-service-test
+          GitHub repository. 
+         -->
         <dependency>
             <groupId>com.ibm.nathangood</groupId>
             <artifactId>myServiceDecisionService</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
-        <!-- We also need the IBM ADS JARs that provide the API for execution -->
+        <!-- 
+          You also need the IBM ADS JARs that provide the API for execution. You
+          will need to download them from the ADS product itself and then install
+          them into your Maven repository. This project includes a Python script
+          that makes that a lot easier. See the instructions for doing it manually
+          at https://www.ibm.com/docs/en/ads/23.0.1?topic=environment-deploying-maven-repository
+          -->
         <dependency>
             <groupId>com.ibm.decision.execution</groupId>
             <artifactId>execution-api</artifactId>
